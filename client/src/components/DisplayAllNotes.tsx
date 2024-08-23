@@ -20,7 +20,12 @@ const DisplayAllNotes: React.FC<DisplayAllNotesProps> = ({
               <p>{note.text}</p>
             </div>
             <div className="flex gap-4">
-              <EditNoteButton noteID={note._id} fetchNotes={fetchNotes} />
+              <EditNoteButton
+                noteID={note._id}
+                noteTitle={note.title}
+                noteText={note.text}
+                fetchNotes={fetchNotes}
+              />
               <DeleteNoteButton noteID={note._id} fetchNotes={fetchNotes} />
             </div>
           </div>

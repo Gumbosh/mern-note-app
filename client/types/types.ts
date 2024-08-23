@@ -10,6 +10,8 @@ export type NoteType = {
 
 export type EditNoteButtonProps = {
   noteID: NoteType['_id'];
+  noteTitle: NoteType['title'];
+  noteText: NoteType['text'];
   fetchNotes: () => void;
 };
 
