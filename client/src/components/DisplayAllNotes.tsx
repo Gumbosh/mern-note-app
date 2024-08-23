@@ -1,11 +1,16 @@
 import React from 'react';
 import { NoteType } from '../../types/types';
+import DeleteNoteButton from './DeleteNoteButton';
 
 type DisplayAllNotesProps = {
   notes: NoteType[];
+  fetchNotes: () => void;
 };
 
-const DisplayAllNotes: React.FC<DisplayAllNotesProps> = ({ notes }) => {
+const DisplayAllNotes: React.FC<DisplayAllNotesProps> = ({
+  notes,
+  fetchNotes,
+}) => {
   return (
     <section className="flex flex-col gap-4">
       {notes.length > 0 ? (
@@ -20,7 +25,7 @@ const DisplayAllNotes: React.FC<DisplayAllNotesProps> = ({ notes }) => {
             </div>
             <div className="flex gap-4">
               <button>Edit</button>
-              <button className="text-red-600">Delete</button>
+              <DeleteNoteButton noteID={note._id} fetchNotes={fetchNotes} />
             </div>
           </div>
         ))

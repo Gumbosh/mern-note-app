@@ -7,12 +7,11 @@ import Navbar from './components/Navbar';
 
 function App() {
   const [notes, setNotes] = useState<NoteType[]>([]);
-
+  const fetchNotes = async () => {
+    const response = await axios.get('http://localhost:4000/api/notes');
+    setNotes(response.data);
+  };
   useEffect(() => {
-    const fetchNotes = async () => {
-      const response = await axios.get('http://localhost:4000/api/notes');
-      setNotes(response.data);
-    };
     fetchNotes();
   }, []);
 
@@ -21,7 +20,7 @@ function App() {
       <Navbar />
       <main className="max-w-[1440px] m-auto px-4">
         <AddNewNoteForm setNotes={setNotes} />
-        <DisplayAllNotes notes={notes} />
+        <DisplayAllNotes notes={notes} fetchNotes={fetchNotes} />
       </main>
     </>
   );
