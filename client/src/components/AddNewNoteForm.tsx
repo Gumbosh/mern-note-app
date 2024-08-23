@@ -1,10 +1,6 @@
-import React, { useState, Dispatch } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { NoteType } from '../../types/types';
-
-type AddNewNoteFormProps = {
-  setNotes: Dispatch<React.SetStateAction<NoteType[]>>;
-};
+import { AddNewNoteFormProps } from '../../types/types';
 
 const AddNewNoteForm: React.FC<AddNewNoteFormProps> = ({ setNotes }) => {
   const [title, setTitle] = useState<string>('');

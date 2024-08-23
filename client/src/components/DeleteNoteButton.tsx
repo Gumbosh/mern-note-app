@@ -1,9 +1,4 @@
-import { NoteType } from '../../types/types';
-
-type DeleteNoteButtonProps = {
-  noteID: NoteType['_id'];
-  fetchNotes: () => void;
-};
+import { DeleteNoteButtonProps } from '../../types/types';
 
 const DeleteNoteButton: React.FC<DeleteNoteButtonProps> = ({
   noteID,
