@@ -1,16 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-type Note = {
-  _id: string;
-  title: string;
-  text: string;
-  createdAt: string;
-  updatedAt: string;
-};
+import AddNewNoteForm from './components/AddNewNoteForm';
+import { NoteType } from '../types/types';
+import DisplayAllNotes from './components/DisplayAllNotes';
+import Navbar from './components/Navbar';
 
 function App() {
-  const [notes, setNotes] = useState<Note[]>([]);
+  const [notes, setNotes] = useState<NoteType[]>([]);
+
   useEffect(() => {
     const fetchNotes = async () => {
       const response = await axios.get('http://localhost:4000/api/notes');
@@ -18,19 +15,15 @@ function App() {
     };
     fetchNotes();
   }, []);
+
   return (
-    <main>
-      {notes.length > 0 ? (
-        notes.map((note) => (
-          <div key={note._id}>
-            <h1>{note.title}</h1>
-            <p>{note.text}</p>
-          </div>
-        ))
-      ) : (
-        <p>No notes available</p>
-      )}
-    </main>
+    <>
+      <Navbar />
+      <main className="max-w-[1440px] m-auto px-4">
+        <AddNewNoteForm setNotes={setNotes} />
+        <DisplayAllNotes notes={notes} />
+      </main>
+    </>
   );
 }
 
